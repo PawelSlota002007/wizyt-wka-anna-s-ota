@@ -185,7 +185,6 @@
 </main>
 
 <script>
-  // Zapis kontaktu jako plik vCard (działa na iPhone i Androidzie)
   const vcard = [
     "BEGIN:VCARD",
     "VERSION:3.0",
@@ -201,7 +200,7 @@
     "END:VCARD"
   ].join("\r\n");
 
-  document.getElementById("save").addEventListener("click", () => {
+  function downloadVcard() {
     const blob = new Blob([vcard], { type: "text/vcard;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -211,6 +210,26 @@
     a.click();
     a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  document.getElementById("save").addEventListener("click", async () => {
+    const file = new File([vcard], "Anna-Slota.vcf", { type: "text/vcard" });
+
+    if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+      try {
+        await navigator.share({
+          files: [file],
+          title: "Kontakt Anna Słota",
+          text: "Dodaj kontakt do książki adresowej"
+        });
+        return;
+      } catch (error) {
+        if (error instanceof DOMException && error.name === "AbortError") return;
+        console.error("Nie udało się udostępnić kontaktu. Zostanie pobrany plik VCF.", error);
+      }
+    }
+
+    downloadVcard();
   });
 </script>
 </body>
