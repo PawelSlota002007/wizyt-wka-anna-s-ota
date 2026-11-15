@@ -118,7 +118,8 @@
   .foot { text-align:center; font-size:12px; color:#8c9097; }
   @media (prefers-reduced-motion:no-preference) {
     .wrap > .card:first-child { animation:in .5s ease-out both; }
-    .btn.primary, .btn.wide { animation:call-pulse 1.4s ease-in-out 5; }
+    .btn.primary { animation:call-pulse 1.4s ease-in-out 5; }
+    .btn.wide { animation:call-pulse 1.4s ease-in-out 5; animation-delay:7s; }
   }
   @keyframes call-pulse {
     0%,100% { box-shadow:0 0 0 0 rgba(59,188,242,0); transform:scale(1); }
