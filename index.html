@@ -65,7 +65,7 @@
   .role { width:100%; margin:12px 0 0; font-size:12px; line-height:1.3; letter-spacing:-.02em; color:var(--white); font-weight:600; text-align:center; }
 
   .body { position:relative; padding:14px 20px 22px; display:grid; gap:18px; background:var(--dark); }
-  .body::before { content:""; position:absolute; top:0; left:0; width:33.2%; height:3px; background:var(--blue); }
+  .body::before { content:""; position:absolute; top:0; left:0; width:33.2%; height:3px; background:var(--blue); clip-path:polygon(0 0,100% 0,calc(100% - 1px) 100%,0 100%); }
   .row { display:flex; align-items:center; gap:14px; color:var(--white); text-decoration:none; }
   .ico { flex:0 0 46px; height:46px; border-radius:50%; background:var(--blue-2); display:grid; place-items:center; }
   .ico svg { width:23px; height:23px; }
